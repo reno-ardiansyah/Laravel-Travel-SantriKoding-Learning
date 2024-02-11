@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\LoginController;
 use App\Http\Controllers\Api\Admin\LogoutController;
+use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\DashboardController;
 
 /*
@@ -37,5 +38,8 @@ Route::prefix('admin')->group(function () {
 
         //route dashboard
         Route::get('/dashboard', DashboardController::class, ['as' => 'admin']);
+
+        //categories resource
+        Route::apiResource('/categories', CategoryController::class, ['except' => ['create', 'edit'], 'as' => 'admin']);
     });
 });

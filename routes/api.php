@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Admin\LoginController;
 use App\Http\Controllers\Api\Admin\PlaceController;
 use App\Http\Controllers\Api\Admin\LogoutController;
@@ -49,5 +50,8 @@ Route::prefix('admin')->group(function () {
 
         //sliders resource
         Route::apiResource('/sliders', SliderController::class, ['except' => ['create', 'show', 'edit', 'update'], 'as' => 'admin']);
+
+        //users resource
+        Route::apiResource('/users', UserController::class, ['except' => ['create', 'edit'], 'as' => 'admin']);  
     });
 });

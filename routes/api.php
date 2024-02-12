@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\LoginController;
 use App\Http\Controllers\Api\Admin\PlaceController;
 use App\Http\Controllers\Api\Admin\LogoutController;
+use App\Http\Controllers\Api\Admin\SliderController;
 use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\DashboardController;
 
@@ -45,5 +46,8 @@ Route::prefix('admin')->group(function () {
 
         //places resource
         Route::apiResource('/places', PlaceController::class, ['except' => ['create', 'edit'], 'as' => 'admin']);
+
+        //sliders resource
+        Route::apiResource('/sliders', SliderController::class, ['except' => ['create', 'show', 'edit', 'update'], 'as' => 'admin']);
     });
 });

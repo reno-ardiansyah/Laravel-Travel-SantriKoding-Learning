@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Admin\LogoutController;
 use App\Http\Controllers\Api\Admin\SliderController;
 use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\DashboardController;
+use App\Http\Controllers\Api\Web\CategoryController as web_CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,16 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('/sliders', SliderController::class, ['except' => ['create', 'show', 'edit', 'update'], 'as' => 'admin']);
 
         //users resource
-        Route::apiResource('/users', UserController::class, ['except' => ['create', 'edit'], 'as' => 'admin']);  
+        Route::apiResource('/users', UserController::class, ['except' => ['create', 'edit'], 'as' => 'admin']);
     });
+});
+
+//group route with prefix "web"
+Route::prefix('web')->group(function () {
+
+    //route categories index
+    Route::get('/categories', [web_CategoryController::class, 'index', ['as' => 'web']]);
+
+    //route categories show
+    Route::get('/categories/{slug?}', [web_CategoryController::class, 'show', ['as' => 'web']]);
 });
